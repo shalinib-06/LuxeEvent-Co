@@ -1,0 +1,117 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Choose Your Team</title> 
+<link rel="stylesheet" href="styles2.css"> 
+<style> 
+.team-container { 
+display: grid; 
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+gap: 20px; 
+margin-top: 20px; 
+} 
+.team-card { 
+background: #f4f4f4; 
+border: 1px solid #ddd; 
+border-radius: 8px; 
+padding: 20px; 
+text-align: center; 
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+transition: transform 0.3s ease; 
+} 
+.team-card:hover { 
+transform: scale(1.05); 
+}
+ .team-card button { 
+background: var(--theme-color, #3498db); 
+border: none; 
+color: #fff; 
+padding: 10px 20px; 
+margin-top: 10px; 
+border-radius: 5px; 
+cursor: pointer; 
+transition: background 0.3s ease; 
+} 
+.team-card button:hover { 
+background: #2c80b9; 
+} 
+</style> 
+</head> 
+<body> 
+<section class="team-selection"> 
+<h1>Choose Your Team</h1> 
+<p>Engage with the right people to make your event unforgettable. Select a team that suits your 
+vision!</p> 
+ 
+<div class="team-container"> 
+<div class="team-card"> 
+<h2>Event Managers</h2> 
+<p>Want an unforgettable experience? Let our expert event managers guide you every step of the 
+way!</p> 
+<button data-message="You’ve chosen Event Managers! We’ll connect you with a top-tier 
+coordinator to bring your vision to life.">Select Team</button> 
+</div> 
+ 
+<div class="team-card"> 
+<h2>Catering Services</h2>
+<p>Delight your guests with an exquisite dining experience, customized to perfection.</p> 
+<button data-message="Catering Services it is! We’ll ensure your guests enjoy a delicious and 
+memorable meal.">Select Team</button> 
+</div> 
+ 
+<div class="team-card"> 
+<h2>Decor & Setup</h2> 
+<p>Transform your venue into a masterpiece that leaves your guests in awe.</p> 
+<button data-message="Decor & Setup selected! Get ready for stunning visuals and elegant 
+arrangements.">Select Team</button> 
+</div> 
+ 
+<div class="team-card"> 
+<h2>Technical Support</h2> 
+<p>Lights, sound, action! Our tech wizards ensure every moment is perfect.</p> 
+<button data-message="You chose Technical Support! Sit back while we handle all the technical 
+magic.">Select Team</button> 
+</div> 
+ 
+<div class="team-card"> 
+<h2>Volunteering</h2> 
+<p>Ready to make a difference? Join our volunteer community and be the heart of impactful 
+events.</p> 
+<button data-message="Thank you for volunteering! We’ll connect you with meaningful 
+opportunities where you can shine.">Select Team</button> 
+</div> 
+ 
+<div class="team-card"> 
+<h2>Non-Profit Events</h2> 
+<p>Passionate about a cause? Let’s bring your vision to life and make an impact together.</p> 
+<button data-message="Non-Profit Events selected! We’ll connect you with experts to create a 
+meaningful and successful event.">Select Team</button>
+</div>
+ 
+ 
+</div> 
+</section> 
+ 
+<script> 
+document.querySelectorAll('.team-card button').forEach((button) => { 
+button.onclick = () => { 
+const selectedTeam = button.dataset.message.split('!')[0]; 
+const currentUser = JSON.parse(localStorage.getItem('currentUser')); 
+ 
+currentUser.team = selectedTeam; 
+const users = JSON.parse(localStorage.getItem('users')); 
+const updatedUsers = users.map(u => u.email === currentUser.email ? currentUser : u); 
+ 
+localStorage.setItem('users', JSON.stringify(updatedUsers)); 
+localStorage.setItem('currentUser', JSON.stringify(currentUser)); 
+ 
+alert(button.dataset.message); 
+window.location.href = 'profile.html'; 
+}; 
+}); 
+ 
+</script> 
+</body> 
+</html> 

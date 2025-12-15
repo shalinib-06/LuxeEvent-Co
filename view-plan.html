@@ -1,0 +1,141 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+     
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>View Plan</title> 
+<style> 
+body { 
+font-family: 'Arial', sans-serif; 
+background-color: #f4f4f9; 
+margin: 0; 
+padding: 0; 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+height: 100vh; 
+color: #333; 
+} 
+ 
+.plan-container { 
+background: #ffffff; 
+padding: 20px 30px; 
+border-radius: 10px; 
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+text-align: center; 
+width: 100%; 
+max-width: 500px; 
+} 
+ 
+h1 { 
+margin-bottom: 20px; 
+color: #444; 
+}
+ .plan-box { 
+margin-bottom: 20px; 
+padding: 15px; 
+background: #f9f9f9; 
+border-radius: 8px; 
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+} 
+ 
+.plan-box .title { 
+font-size: 18px; 
+font-weight: bold; 
+} 
+ 
+.plan-box .amount { 
+font-size: 20px; 
+color: #3498db; 
+} 
+ 
+.plan-box ul { 
+list-style: none; 
+padding-left: 0; 
+} 
+ 
+.plan-box ul li { 
+margin: 5px 0; 
+} 
+ 
+.btn-select-plan { 
+background-color: #2ecc71; 
+color: white; 
+padding: 10px 20px; 
+ 
+border-radius: 5px; 
+text-decoration: none; 
+font-weight: bold; 
+transition: background-color 0.3s ease; 
+} 
+ 
+.btn-select-plan:hover { 
+background-color: #27ae60; 
+} 
+</style> 
+</head> 
+<body> 
+<div class="plan-container"> 
+<h1>Choose Your Plan</h1> 
+<div class="plan-box"> 
+<div class="title">Basic</div> 
+<div class="amount">₹999</div> 
+<ul> 
+<li>Access to shared resources</li> 
+<li>Limited event templates</li> 
+<li>Email support</li> 
+</ul> 
+<a href="#" class="btn-select-plan" onclick="selectPlan('Basic', 999)">Select</a> 
+</div> 
+ 
+<div class="plan-box"> 
+<div class="title">Standard</div> 
+<div class="amount">₹1999</div> 
+<ul> 
+<li>Dedicated support</li> 
+<li>Limited+ event templates</li>
+ <li>Planning assistant</li> 
+<li>Priority email & phone support</li> 
+</ul> 
+<a href="#" class="btn-select-plan" onclick="selectPlan('Standard', 1999)">Select</a> 
+</div> 
+ 
+<div class="plan-box"> 
+<div class="title">Ultra</div> 
+<div class="amount">₹3999</div> 
+<ul> 
+<li>All features included</li> 
+<li>Unlimited event templates</li> 
+<li>24/7 support</li> 
+</ul> 
+<a href="#" class="btn-select-plan" onclick="selectPlan('Ultra', 3999)">Select</a> 
+</div> 
+</div> 
+ 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+<script> 
+function selectPlan(plan, price) { 
+// Get the current user data from localStorage 
+let user = JSON.parse(localStorage.getItem('currentUser')); 
+ 
+if (user) { 
+// Update the user's plan in the JSON object 
+user.plan = plan; 
+user.planPrice = price; 
+ 
+// Save the updated user object back to localStorage 
+localStorage.setItem('currentUser', JSON.stringify(user));
+ 
+ 
+// Notify the user and redirect to the profile page 
+alert(`You have selected the ${plan} plan for ₹${price}.`); 
+window.location.href = 'profile.html';  // Redirect to the profile page 
+} else { 
+alert('Please log in first.'); 
+window.location.href = 'login.html';  // Redirect to login if no user is logged in 
+} 
+} 
+</script> 
+</body> 
+</html> 

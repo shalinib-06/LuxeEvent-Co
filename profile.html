@@ -1,0 +1,89 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Profile</title> 
+<style> 
+body { 
+font-family: 'Arial', sans-serif; 
+background-color: #f4f4f9; 
+margin: 0; 
+padding: 0; 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+height: 100vh; 
+color: #333; 
+} 
+ 
+.profile-container { 
+background: #ffffff; 
+padding: 20px 30px; 
+ 
+border-radius: 10px; 
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+text-align: center; 
+max-width: 400px; 
+width: 100%; 
+} 
+ 
+h1 { 
+margin-bottom: 20px; 
+color: #444; 
+} 
+ 
+.profile-info p { 
+margin: 10px 0; 
+font-size: 16px; 
+line-height: 1.5; 
+} 
+ 
+.choose-team-button, .choose-plan-button { 
+display: inline-block; 
+margin-top: 20px; 
+padding: 10px 20px; 
+background-color: #3498db; 
+color: white; 
+text-decoration: none; 
+border-radius: 5px; 
+font-weight: bold; 
+transition: background-color 0.3s ease; 
+} 
+ 
+.choose-team-button:hover, .choose-plan-button:hover { 
+background-color: #2c80b9; 
+ } 
+</style> 
+</head> 
+<body> 
+<div class="profile-container"> 
+<h1>Profile</h1> 
+<div id="profile-info" class="profile-info"></div> 
+<a href="choose-team.html" class="choose-team-button">Choose Team</a> 
+<a href="view-plan.html" class="choose-plan-button">Choose Plan</a> 
+<a href="index.html" class="choose-plan-button">log out</a> 
+</div> 
+ 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+<script> 
+$(document).ready(function () { 
+// Load the current user from localStorage 
+let user = JSON.parse(localStorage.getItem('currentUser')); 
+ 
+if (!user) { 
+alert('Please log in first.'); 
+window.location.href = 'login.html'; 
+} else { 
+// Display profile info (name, email, selected team, and selected plan) 
+$('#profile-info').html(` 
+<p><strong>Name:</strong> ${user.name}</p> 
+<p><strong>Email:</strong> ${user.email}</p> 
+<p><strong>Team:</strong> ${user.team || 'No team selected'}</p> 
+<p><strong>Plan:</strong> ${user.plan || 'No plan selected'}</p> 
+`); 
+} 
+}); 
+ </script> 
+</body> 
+</html> 
